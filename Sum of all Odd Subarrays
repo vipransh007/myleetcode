@@ -1,0 +1,14 @@
+class Solution {
+    public int sumOddLengthSubarrays(int[] arr) {
+        int res = 0;
+        for (int i = 0; i < arr.length; i++) {
+            //lets figer out how many times this index takes part in all subarrays
+            int allCount = (arr.length - i) * (i + 1);
+            //lets figer out how many odd arrays are inside allCount - just divide allCount by 2 and if allCount was odd, just add 1
+            int oddCount = allCount % 2 == 0 ? allCount / 2 : allCount / 2 + 1;
+            //lets find out the sum of all occurencies of this index in odd arrays and add it to res(ult)
+            res += oddCount * arr[i];
+        }
+        return res;
+    }
+}
