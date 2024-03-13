@@ -1,0 +1,18 @@
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+
+        Arrays.sort(nums); // Sort the entire array
+        
+        int first = 1;
+        
+        for (int num : nums) {
+            if (num == first) {
+                first++;
+            } else if (num > first) {
+                return first; // Found the first missing positive integer
+            }
+        }
+        
+        return first; // All positive integers up to the maximum in the array are present
+    }
+}
