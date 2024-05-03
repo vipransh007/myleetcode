@@ -1,0 +1,54 @@
+// class Solution {
+//     public int lengthOfLongestSubstring(String s) {
+//         int maxlen = Integer.MIN_VALUE;
+
+//         if(s.length()==0)
+//         return 0;
+        
+//         for (int i = 0; i < s.length(); i++) {
+//             for (int j = i + 1; j <= s.length(); j++) {
+//                 int len = largestlen(s.substring(i, j));
+//                 maxlen = Math.max(maxlen, len);
+//             }
+//         }
+        
+//         return maxlen;
+//     }
+    
+//     private int largestlen(String s1) {
+//         Set<Character> set = new HashSet<>();
+//         int maxLen = 0;
+        
+//         for (char c : s1.toCharArray()) {
+//             if (set.contains(c)) {
+//                 break;
+//             }
+//             set.add(c);
+//             maxLen++;
+//         }
+        
+//         return maxLen;
+//     }
+// }
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        int maxLen = 0, left = 0, right = 0;
+        
+        while (right < n) {
+            char c = s.charAt(right);
+            if (!set.contains(c)) {
+                set.add(c);
+                maxLen = Math.max(maxLen, right - left + 1);
+                right++;
+            } else {
+                set.remove(s.charAt(left));
+                left++;
+            }
+        }
+        
+        return maxLen;
+    }
+}
